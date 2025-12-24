@@ -1,0 +1,119 @@
+{
+  "name": "My Frist Chatbot lecture 14th",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "mode": "webhook",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -864,
+        -272
+      ],
+      "id": "90e732c5-bae2-4f4b-a787-afaab80a895f",
+      "name": "When chat message received",
+      "webhookId": "0162fb99-88fc-4fb4-a274-0d9596f13c70"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -656,
+        -272
+      ],
+      "id": "b85c928f-7279-46cd-b4c5-d80f7c094f96",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -560,
+        -64
+      ],
+      "id": "f9bb2ea0-9f99-45e7-a5fd-8ae5422bbe9b",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -720,
+        -64
+      ],
+      "id": "a29a1133-99b4-4289-9d0b-586f64920a8b",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "gwlYGASQJXkjWlPL",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "66ff2e43-5b01-4bfe-a743-deae12a8a541",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "002b696fd9093180627d05a8391db53c6f256438c8b478a9e6fc1bac34a383c3"
+  },
+  "id": "ulitOqlKBOVQasse",
+  "tags": []
+}
